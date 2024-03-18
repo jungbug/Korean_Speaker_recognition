@@ -4,6 +4,8 @@ import traceback
 import warnings
 from typing import TYPE_CHECKING, List, Optional, Tuple, Union
 
+from run_deepSpeaker import start
+
 import numpy as np
 import torch
 import tqdm
@@ -399,6 +401,7 @@ def transcribe(
                 for segment in current_segments:
                     start, end, text = segment["start"], segment["end"], segment["text"]
                     line = f"[{format_timestamp(start)} --> {format_timestamp(end)}] {text}"
+                    start(format_timestamp(start), format_timestamp(end))
                     # 여기부분이 print 찍는 부분임
                     print(make_safe(line))
 
